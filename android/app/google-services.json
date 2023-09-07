@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "989301557409",
+    "project_id": "zainfinal-b9de0",
+    "storage_bucket": "zainfinal-b9de0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989301557409:android:356cbabb92b9586e0288e0",
+        "android_client_info": {
+          "package_name": "com.example.zainlak_tech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989301557409-68p5j36u5g6032ko7lvbjoj9fi3ospdn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyXkLK2oMf4k9M_JHf28gjye0ZjPFVzTs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989301557409-68p5j36u5g6032ko7lvbjoj9fi3ospdn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
