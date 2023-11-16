@@ -48,11 +48,11 @@ class _OTPScreenState extends State<OTPScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('title_otp').tr(),
+        title: const Text('title_otp').tr(),
         backgroundColor: AppColor.AppColors,
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             TextField(
@@ -62,20 +62,20 @@ class _OTPScreenState extends State<OTPScreen> {
                 labelText: 'enter_otp'.tr(),
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: _isVerifying ? null : _verifyOTP,
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColor.AppColors
               ),
               child: _isVerifying
-                  ? CircularProgressIndicator()
+                  ? const CircularProgressIndicator()
                   : Text('verify_otp'.tr()),
             ),
             if (_verificationError.isNotEmpty)
               Text(
                 _verificationError,
-                style: TextStyle(color: AppColor.AppColors),
+                style: const TextStyle(color: AppColor.AppColors),
               ),
           ],
         ),

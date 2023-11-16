@@ -38,7 +38,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       await OTPService.changePassword(widget.email, newPassword);
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => LoginScreen()),
+        MaterialPageRoute(builder: (context) => const LoginScreen()),
       );
     } catch (error) {
       setState(() {
@@ -55,11 +55,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('change_password').tr(),
+        title: const Text('change_password').tr(),
         backgroundColor: AppColor.AppColors,
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             TextField(
@@ -69,7 +69,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 labelText: 'new_password'.tr(),
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             TextField(
               controller: _confirmPasswordController,
               obscureText: true,
@@ -77,17 +77,17 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 labelText: 'confirm_password'.tr(),
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: _isChangingPassword ? null : _changePassword,
               child: _isChangingPassword
-                  ? CircularProgressIndicator()
-                  : Text('change_password').tr(),
+                  ? const CircularProgressIndicator()
+                  : const Text('change_password').tr(),
             ),
             if (_changePasswordError.isNotEmpty)
               Text(
                 _changePasswordError,
-                style: TextStyle(color: AppColor.AppColors),
+                style: const TextStyle(color: AppColor.AppColors),
               ),
           ],
         ),

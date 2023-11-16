@@ -1,14 +1,11 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:zainlak_tech/Constant/AppColor.dart';
 import 'package:zainlak_tech/Screen/Ui/BookingScreen.dart';
 import 'package:zainlak_tech/Screen/Ui/FavouriteScreen.dart';
 import 'package:zainlak_tech/Screen/Ui/HomeScreen.dart';
@@ -69,7 +66,7 @@ class _MainScreenState extends State<MainScreen> {
       if (e == ConnectivityResult.none) {
         isCurrentlyOnNoInternet = true;
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => NoInternetScreen())
+            MaterialPageRoute(builder: (context) => const NoInternetScreen())
         );
 
         print("dissss");
@@ -86,11 +83,11 @@ class _MainScreenState extends State<MainScreen> {
 
   int pageIndex = 0;
   List<Widget> screens = [
-    HomeScreen(),
-    BookingScreen(),
-    FavouriteScreen(),
-    ProfileScreen(),
-    MoreScreen(),
+    const HomeScreen(),
+    const BookingScreen(),
+    const FavouriteScreen(),
+    const ProfileScreen(),
+    const MoreScreen(),
   ];
 
   DateTime? currentBackPressTime;
@@ -98,11 +95,11 @@ class _MainScreenState extends State<MainScreen> {
   Future<bool> onWillPop() {
     DateTime now = DateTime.now();
     if (currentBackPressTime == null ||
-        now.difference(currentBackPressTime!) > Duration(seconds: 2)) {
+        now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
       currentBackPressTime = now;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Press back again to exit').tr(),
+          content: const Text('Press back again to exit').tr(),
         ),
       );
       return Future.value(false);

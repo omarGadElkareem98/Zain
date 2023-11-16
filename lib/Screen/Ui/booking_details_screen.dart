@@ -34,7 +34,7 @@ class BookingDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColor.AppColors,
         elevation: 0,
-        title: Text(
+        title: const Text(
           'booking_details',
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -45,7 +45,7 @@ class BookingDetailsScreen extends StatelessWidget {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios,
             color: Colors.white,
             size: 30,
@@ -68,7 +68,7 @@ class BookingDetailsScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -80,7 +80,7 @@ class BookingDetailsScreen extends StatelessWidget {
                       backgroundColor: Colors.white,
                       child: IconButton(onPressed: (){
                         SendMessageByWatsapp();
-                      }, icon:Icon (FontAwesomeIcons.whatsapp,color: Colors.green,)) ,
+                      }, icon:const Icon (FontAwesomeIcons.whatsapp,color: Colors.green,)) ,
                     ),
                   ),
 
@@ -92,15 +92,15 @@ class BookingDetailsScreen extends StatelessWidget {
                       backgroundColor: Colors.white,
                       child: IconButton(onPressed: (){
                         CallPhoneNumber();
-                      }, icon:Icon (Icons.phone,color: Colors.blue,)) ,
+                      }, icon:const Icon (Icons.phone,color: Colors.blue,)) ,
                     ),
                   ),
 
 
                 ],
               ),
-              SizedBox(height: 16),
-              Text(
+              const SizedBox(height: 16),
+              const Text(
                 'technician_name',
                 style: TextStyle(
                   fontSize: 18,
@@ -109,10 +109,10 @@ class BookingDetailsScreen extends StatelessWidget {
               ).tr(),
               Text(
                 '${bookingData['technicianId']['name']}',
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
-              SizedBox(height: 8),
-              Text(
+              const SizedBox(height: 8),
+              const Text(
                 'email',
                 style: TextStyle(
                   fontSize: 18,
@@ -121,10 +121,10 @@ class BookingDetailsScreen extends StatelessWidget {
               ).tr(),
               Text(
                 '${bookingData['technicianId']['email']}',
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
-              SizedBox(height: 8),
-              Text(
+              const SizedBox(height: 8),
+              const Text(
                 'phone',
                 style: TextStyle(
                   fontSize: 18,
@@ -133,10 +133,10 @@ class BookingDetailsScreen extends StatelessWidget {
               ).tr(),
               Text(
                 bookingData['technicianId']['phone'],
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
-              SizedBox(height: 8),
-              Text(
+              const SizedBox(height: 8),
+              const Text(
                 'Location',
                 style: TextStyle(
                   fontSize: 18,
@@ -145,10 +145,10 @@ class BookingDetailsScreen extends StatelessWidget {
               ).tr(),
               Text(
                 bookingData['technicianId']['location'],
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
-              SizedBox(height: 8),
-              Text(
+              const SizedBox(height: 8),
+              const Text(
                 'category',
                 style: TextStyle(
                   fontSize: 18,
@@ -157,10 +157,10 @@ class BookingDetailsScreen extends StatelessWidget {
               ).tr(),
               Text(
                 bookingData['technicianId']['category']['name'],
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
-              SizedBox(height: 8),
-              Text(
+              const SizedBox(height: 8),
+              const Text(
                 'subcategory',
                 style: TextStyle(
                   fontSize: 18,
@@ -169,10 +169,10 @@ class BookingDetailsScreen extends StatelessWidget {
               ).tr(),
               Text(
                 (bookingData['technicianId']['subCategory'] as List).map((e) => e['name']).join(',\n'),
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
-              SizedBox(height: 8),
-              Text(
+              const SizedBox(height: 8),
+              const Text(
                 'rating',
                 style: TextStyle(
                   fontSize: 18,
@@ -181,16 +181,16 @@ class BookingDetailsScreen extends StatelessWidget {
               ).tr(),
               Row(
                 children: [
-                  Icon(Icons.star, color: Colors.amber),
-                  SizedBox(width: 4),
+                  const Icon(Icons.star, color: Colors.amber),
+                  const SizedBox(width: 4),
                   Text(
                     bookingData['technicianId']['rating'].toStringAsFixed(1),
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16),
                   ),
                 ],
               ),
-              SizedBox(height: 8),
-              Text(
+              const SizedBox(height: 8),
+              const Text(
                 'price',
                 style: TextStyle(
                   fontSize: 18,
@@ -199,10 +199,10 @@ class BookingDetailsScreen extends StatelessWidget {
               ).tr(),
               Text(
                 '${bookingData['technicianId']['price']} SAR',
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
-              SizedBox(height: 8),
-              Text(
+              const SizedBox(height: 8),
+              const Text(
                 'booking_date',
                 style: TextStyle(
                   fontSize: 18,
@@ -211,10 +211,10 @@ class BookingDetailsScreen extends StatelessWidget {
               ).tr(),
               Text(
                 bookingData['date'],
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
-              SizedBox(height: 8),
-              Text(
+              const SizedBox(height: 8),
+              const Text(
                 'booking_time',
                 style: TextStyle(
                   fontSize: 18,
@@ -223,10 +223,10 @@ class BookingDetailsScreen extends StatelessWidget {
               ).tr(),
               Text(
                 bookingData['time'],
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
-              SizedBox(height: 8),
-              Text(
+              const SizedBox(height: 8),
+              const Text(
                 'Status',
                 style: TextStyle(
                   fontSize: 18,
@@ -235,7 +235,7 @@ class BookingDetailsScreen extends StatelessWidget {
               ).tr(),
               Text(
                 bookingData['status'],
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
             ],
           ),

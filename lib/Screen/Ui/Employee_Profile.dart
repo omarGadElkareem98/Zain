@@ -1,21 +1,13 @@
 
 
-import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart';
 import 'package:zainlak_tech/Constant/AppColor.dart';
 import 'package:zainlak_tech/Services/reservations.dart';
 import 'package:zainlak_tech/Services/users.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:zainlak_tech/main.dart';
 
 import '../../Auth/LoginScreen.dart';
 
@@ -84,33 +76,33 @@ class _employeeProfile extends State<employeeProfile> {
 
                       Card(
 
-                        margin: EdgeInsets.symmetric(vertical: 40,horizontal: 20),
+                        margin: const EdgeInsets.symmetric(vertical: 40,horizontal: 20),
                         color: Colors.white,
                         child: Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: 30,),
+                              const SizedBox(height: 30,),
                               Align( alignment: Alignment.center, child:
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(widget.tech['name'],style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                                  Text(widget.tech['name'],style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
                                   Text(widget.tech['available'] ? "Available" : "Not Available",style: TextStyle(fontWeight: FontWeight.bold,color:widget.tech['available'] ? Colors.green : Colors.red,fontSize: 20),)
                                 ],
                               )),
-                              SizedBox(height: 10,),
-                              Align( alignment: Alignment.center, child: Text('Joined Since',style: TextStyle(fontSize: 17,color: Colors.indigo),).tr(args: [dateFormat.format(DateTime.fromMillisecondsSinceEpoch(int.parse(widget.tech['createdAt'])))])),
-                              SizedBox(height: 20,),
-                              Align(alignment: Alignment.center  , child: Text('WorkTime').tr(args: [widget.tech['from'],widget.tech['to']]),),
-                              SizedBox(height: 20,),
-                              Align(alignment: Alignment.center, child: Text('Service Price').tr(args: [widget.tech['price'].toString() + " SAR"]),),
-                              SizedBox(height: 20,),
+                              const SizedBox(height: 10,),
+                              Align( alignment: Alignment.center, child: const Text('Joined Since',style: TextStyle(fontSize: 17,color: Colors.indigo),).tr(args: [dateFormat.format(DateTime.fromMillisecondsSinceEpoch(int.parse(widget.tech['createdAt'])))])),
+                              const SizedBox(height: 20,),
+                              Align(alignment: Alignment.center  , child: const Text('WorkTime').tr(args: [widget.tech['from'],widget.tech['to']]),),
+                              const SizedBox(height: 20,),
+                              Align(alignment: Alignment.center, child: const Text('Service Price').tr(args: ["${widget.tech['price']} SAR"]),),
+                              const SizedBox(height: 20,),
 
-                              Divider(thickness: 1,),
-                              SizedBox(height: 40,),
+                              const Divider(thickness: 1,),
+                              const SizedBox(height: 40,),
                               Align(
                                 alignment: Alignment.center,
                                 child: Padding(
@@ -124,7 +116,7 @@ class _employeeProfile extends State<employeeProfile> {
                                             initialDate: DateTime.now(),
                                             firstDate: DateTime.now(),
                                             lastDate: DateTime(2024),
-                                          locale: Locale('en','')
+                                          locale: const Locale('en','')
                                         );
 
                                         if(date != null){
@@ -148,16 +140,16 @@ class _employeeProfile extends State<employeeProfile> {
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
-                                          Text('احجز زياره للمنزل',style: TextStyle(color: Colors.white,fontSize: 18),).tr(),
-                                SizedBox(width: 10,),
-                                Icon(Icons.bookmark_border,color: Colors.white,)
+                                          const Text('احجز زياره للمنزل',style: TextStyle(color: Colors.white,fontSize: 18),).tr(),
+                                const SizedBox(width: 10,),
+                                const Icon(Icons.bookmark_border,color: Colors.white,)
                                 ],
                               ),
                                     ),
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 10,),
+                              const SizedBox(height: 10,),
                               Align(
                                 alignment: Alignment.centerRight,
                                 child: IconButton(
@@ -174,12 +166,12 @@ class _employeeProfile extends State<employeeProfile> {
                                   icon: Icon(Icons.favorite,color: _isFavorite ? Colors.red : Colors.black,),
                                 ),
                               ),
-                              Divider(thickness: 1,),
+                              const Divider(thickness: 1,),
 
-                              SizedBox(height: 10,),
+                              const SizedBox(height: 10,),
 
 
-                              SizedBox(height: 10,),
+                              const SizedBox(height: 10,),
 
 
 
@@ -225,12 +217,12 @@ class _employeeProfile extends State<employeeProfile> {
         title: Column(
           children: [
             Row(children: [
-              Icon(Icons.logout),
-              SizedBox(width: 10,),
-              Text('Sign Out').tr()
+              const Icon(Icons.logout),
+              const SizedBox(width: 10,),
+              const Text('Sign Out').tr()
             ],),
-            SizedBox(height: 10,),
-            TextButton(onPressed: (){}, child: Text('Do you want logOut',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),).tr())
+            const SizedBox(height: 10,),
+            TextButton(onPressed: (){}, child: const Text('Do you want logOut',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),).tr())
           ],
         ),
         actions: [
@@ -238,13 +230,13 @@ class _employeeProfile extends State<employeeProfile> {
 
 
             Navigator.push(context, MaterialPageRoute(builder: (context){
-              return LoginScreen();
+              return const LoginScreen();
             }));
 
-          }, child: Text('Ok').tr()),
+          }, child: const Text('Ok').tr()),
           TextButton(onPressed: (){
             Navigator.pop(context);
-          }, child: Text('Cancel').tr()),
+          }, child: const Text('Cancel').tr()),
         ],
 
       );
@@ -291,7 +283,7 @@ class _employeeProfile extends State<employeeProfile> {
         context: context,
         barrierDismissible: false,
         builder: (context) {
-          return AnimatedDialog(
+          return const AnimatedDialog(
             title: 'Booking Failed',
             icon: Icons.close,
             iconColor: Colors.red,
@@ -311,7 +303,7 @@ class AnimatedDialog extends StatefulWidget {
   final Color iconColor;
   final Color backgroundColor;
 
-  AnimatedDialog({
+  const AnimatedDialog({super.key, 
     required this.title,
     required this.icon,
     required this.iconColor,
@@ -333,7 +325,7 @@ class _AnimatedDialogState extends State<AnimatedDialog>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
     );
 
     _scaleAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
@@ -387,19 +379,19 @@ class _AnimatedDialogState extends State<AnimatedDialog>
                       color: widget.iconColor,
                       size: 80,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     AutoSizeText(
                       widget.title,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),maxLines: 1,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
+                        backgroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
@@ -407,7 +399,7 @@ class _AnimatedDialogState extends State<AnimatedDialog>
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      child: Text(
+                      child: const Text(
                         'OK',
                         style: TextStyle(
                           fontSize: 20,

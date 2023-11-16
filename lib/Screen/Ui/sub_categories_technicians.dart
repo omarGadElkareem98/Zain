@@ -29,7 +29,7 @@ class _SubCategoriesTechniciansState extends State<SubCategoriesTechnicians> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_back_ios,
                 color: Colors.white,
                 size: 30,
@@ -45,14 +45,14 @@ class _SubCategoriesTechniciansState extends State<SubCategoriesTechnicians> {
         AsyncSnapshot<({List<dynamic> technicians, String? message})>
             snapshot) {
       if (snapshot.connectionState == ConnectionState.waiting) {
-        return Center(
+        return const Center(
           child: CircularProgressIndicator(),
         );
       }
 
       if (snapshot.hasError) {
         return Center(
-          child: Text('Something Went Wrong').tr(),
+          child: const Text('Something Went Wrong').tr(),
         );
       }
 
@@ -60,7 +60,7 @@ class _SubCategoriesTechniciansState extends State<SubCategoriesTechnicians> {
 
         if(snapshot.data!.technicians.isEmpty){
           return Center(
-            child: AutoSizeText('There Is No Technicians Here'.tr(),style: TextStyle(
+            child: AutoSizeText('There Is No Technicians Here'.tr(),style: const TextStyle(
               fontSize: 24
             ),maxLines: 1,),
           );
@@ -73,7 +73,7 @@ class _SubCategoriesTechniciansState extends State<SubCategoriesTechnicians> {
             itemBuilder: (context, index) {
               final tech = snapshot.data!.technicians[index];
               return Container(
-                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -81,15 +81,15 @@ class _SubCategoriesTechniciansState extends State<SubCategoriesTechnicians> {
                     BoxShadow(
                       color: Colors.black.withOpacity(0.1),
                       blurRadius: 3,
-                      offset: Offset(0, 2),
+                      offset: const Offset(0, 2),
                     ),
                   ],
                 ),
                 child: ListTile(
                   leading: CachedNetworkImage(
                     imageUrl: tech['image'],
-                    placeholder: (context, url) => CircularProgressIndicator(),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    placeholder: (context, url) => const CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
                     imageBuilder: (context, imageProvider) => Container(
                       width: 60,
                       height: 60,

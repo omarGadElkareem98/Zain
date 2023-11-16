@@ -1,6 +1,4 @@
 
-import 'package:easy_localization/easy_localization.dart' show BuildContextEasyLocalizationExtension, tr;
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:zainlak_tech/Constant/AppColor.dart';
@@ -19,6 +17,7 @@ class Terms extends StatelessWidget {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -27,7 +26,7 @@ class Terms extends StatelessWidget {
             onPressed: (){
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back_ios,size: 30,color: Colors.white,),
+            icon: const Icon(Icons.arrow_back_ios,size: 30,color: Colors.white,),
           ),
         ),
         body: Directionality(
@@ -38,18 +37,18 @@ class Terms extends StatelessWidget {
 
             builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
               if(snapshot.connectionState == ConnectionState.waiting){
-                return Center(child: CircularProgressIndicator(
+                return const Center(child: CircularProgressIndicator(
                   color: AppColor.AppColors,
                 ));
               }
               if(snapshot.data==null){
-                return Center(
+                return const Center(
                   child: Text('Data is null'),
                 );
               }
               return Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text("${snapshot.data}",style: TextStyle(
+                child: Text("${snapshot.data}",style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w500
                 ),),

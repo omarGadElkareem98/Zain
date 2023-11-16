@@ -1,15 +1,11 @@
 
-import 'dart:convert';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zainlak_tech/Services/reservations.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../Constant/AppColor.dart';
 import 'booking_details_screen.dart';
 
 class BookingScreen extends StatefulWidget {
@@ -34,7 +30,7 @@ class _BookingScreenState extends State<BookingScreen> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(
+                  child: const Text(
                     "My Bookmarks",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -42,14 +38,14 @@ class _BookingScreenState extends State<BookingScreen> {
                     ),
                   ).tr(),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 SizedBox(
                   height: 700,
                   child: FutureBuilder<({ List<dynamic> reservations, String? errorMessage })>(
                       future: ReservationService.getUserReservations(),
                     builder: (context, AsyncSnapshot<({ List<dynamic> reservations, String? errorMessage })> rss) {
         if (rss.connectionState == ConnectionState.waiting) {
-        return Center(
+        return const Center(
         child: CircularProgressIndicator(),
         );
         } else if (rss.connectionState ==
@@ -57,7 +53,7 @@ class _BookingScreenState extends State<BookingScreen> {
         if (rss.data != null) {
         return rss.data!.reservations.isEmpty
         ? Center(
-        child: Text(
+        child: const Text(
         'There Are No Bookings Yet',
         style: TextStyle(
         fontSize: 24,
@@ -95,7 +91,7 @@ class _BookingScreenState extends State<BookingScreen> {
         BorderRadius.circular(12.0),
         boxShadow: [
         BoxShadow(
-        offset: Offset(0, 3),
+        offset: const Offset(0, 3),
         blurRadius: 6,
         color: Colors.black.withOpacity(0.1),
         ),
@@ -117,7 +113,7 @@ class _BookingScreenState extends State<BookingScreen> {
         borderRadius: BorderRadius.circular(12.0),
         ),
         ),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         Expanded(
         child: Padding(
         padding: const EdgeInsets.only(top: 20),
@@ -126,22 +122,22 @@ class _BookingScreenState extends State<BookingScreen> {
         children: [
         AutoSizeText(
         "code: ${rss.data!.reservations[index]['_id']}",
-        style: TextStyle(
+        style: const TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 18,
         ),maxLines:1
         ),
         Text(
         "${context.locale.languageCode == 'en' ? rss.data!.reservations[index]['technicianId']['category']['name'] : rss.data!.reservations[index]['technicianId']['category']['nameAr']}",
-        style: TextStyle(
+        style: const TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 18,
         ),
         ),
-        SizedBox(height: 6),
+        const SizedBox(height: 6),
         Text(
         "${rss.data!.reservations[index]['technicianId']['name']}",
-        style: TextStyle(
+        style: const TextStyle(
         fontSize: 16,
         color: Colors.grey,
         ),
@@ -162,11 +158,11 @@ class _BookingScreenState extends State<BookingScreen> {
         child: Container(
         width: 40,
         height: 40,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
         color: Colors.red,
         shape: BoxShape.circle,
         ),
-        child: Icon(
+        child: const Icon(
         Icons.delete,
         color: Colors.white,
         ),
@@ -183,7 +179,7 @@ class _BookingScreenState extends State<BookingScreen> {
         }
         }
 
-        return Text('');
+        return const Text('');
         },
         ),
                 ),
@@ -200,21 +196,21 @@ class _BookingScreenState extends State<BookingScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Delete Booking').tr(),
-          content: Text('Are you sure you want to delete this booking?').tr(),
+          title: const Text('Delete Booking').tr(),
+          content: const Text('Are you sure you want to delete this booking?').tr(),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Cancel').tr(),
+              child: const Text('Cancel').tr(),
             ),
             TextButton(
               onPressed: () {
                 _deleteBooking(bookingId);
                 Navigator.of(context).pop();
               },
-              child: Text('Delete', style: TextStyle(color: Colors.red)).tr(),
+              child: const Text('Delete', style: TextStyle(color: Colors.red)).tr(),
             ),
           ],
         );
@@ -228,7 +224,7 @@ class _BookingScreenState extends State<BookingScreen> {
       setState(() {});
     } catch (error) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to delete booking')),
+        const SnackBar(content: Text('Failed to delete booking')),
       );
     }
   }

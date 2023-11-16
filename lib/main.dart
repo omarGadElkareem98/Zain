@@ -1,27 +1,18 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:io';
 import 'dart:math';
 
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:zainlak_tech/Constant/AppColor.dart';
 import 'package:zainlak_tech/Screen/Ui/SplachScreen.dart';
-import 'package:zainlak_tech/Services/users.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'Screen/Ui/no_network_screen.dart';
-import 'Screen/Ui/on_boarding_screen.dart';
 
 
 
@@ -142,9 +133,9 @@ Future<void> main() async {
 
 
 
-  runApp( EasyLocalization(child: MyApp(token: token,), supportedLocales: [Locale('en', ''), Locale('ar', '')],
+  runApp( EasyLocalization(supportedLocales: const [Locale('en', ''), Locale('ar', '')],
     path: "assets/Lang",
-    fallbackLocale: Locale('en', ''),));
+    fallbackLocale: const Locale('en', ''),child: MyApp(token: token,),));
   await showFlutterNotification('Zainlak', 'Welcome To Zainlak');
 
 }
@@ -168,7 +159,7 @@ class _MyAppState extends State<MyApp> {
           locale: context.locale,
           title: 'Zainlak',
           theme: ThemeData(
-            appBarTheme: AppBarTheme(
+            appBarTheme: const AppBarTheme(
               backgroundColor: Colors.white,
               elevation: 0
             ),

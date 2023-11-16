@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zainlak_tech/Constant/AppColor.dart';
 
@@ -16,11 +15,11 @@ class _LanguagesState extends State<Languages> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Change Language').tr(),
+          title: const Text('Change Language').tr(),
           backgroundColor: AppColor.AppColors,
         ),
         body: Container(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -29,38 +28,36 @@ class _LanguagesState extends State<Languages> {
                 height: 60,
                 child: ElevatedButton(
                   onPressed: () async {
-                    await context.setLocale(Locale('en', ''));
+                    await context.setLocale(const Locale('en', ''));
                     setState(() {});
                   },
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: 16.0),
+                    padding: const EdgeInsets.symmetric(vertical: 16.0), backgroundColor: AppColor.AppColors,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12.0),
                     ),
-                    primary: AppColor.AppColors,
                   ),
-                  child: Text(
+                  child: const Text(
                     "English",
                     style: TextStyle(fontSize: 18),
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               SizedBox(
                 height: 60,
                 child: ElevatedButton(
                   onPressed: () async {
-                    await context.setLocale(Locale('ar', ''));
+                    await context.setLocale(const Locale('ar', ''));
                     setState((){});
                   },
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: 16.0),
+                    padding: const EdgeInsets.symmetric(vertical: 16.0), backgroundColor: AppColor.AppColors,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12.0),
                     ),
-                    primary: AppColor.AppColors,
                   ),
-                  child: Text(
+                  child: const Text(
                     "العربية",
                     style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
                   ),

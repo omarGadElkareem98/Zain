@@ -1,14 +1,10 @@
-import 'dart:convert';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:zainlak_tech/Constant/AppColor.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zainlak_tech/Services/users.dart';
-import '../../Provider/UserProvider.dart';
 
 class NotificationsScreen extends StatefulWidget {
-  NotificationsScreen({Key? key}) : super(key: key);
+  const NotificationsScreen({Key? key}) : super(key: key);
 
   @override
   State<NotificationsScreen> createState() => _NotificationsScreenState();
@@ -21,7 +17,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Center(child: Text('notifications').tr()),
+          title: Center(child: const Text('notifications').tr()),
           backgroundColor: Colors.black,
         ),
         // drawer: Drawer(
@@ -33,7 +29,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         AsyncSnapshot<({List notifications, String? errorMessage})>
             snapshot) {
       if (snapshot.connectionState == ConnectionState.waiting) {
-        return Center(
+        return const Center(
           child: CircularProgressIndicator(
             color: AppColor.AppColors,
           ),
@@ -43,7 +39,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         List notifications = snapshot.data!.notifications;
 
         if (notifications.isEmpty) {
-          return Center(child: Text("Notifications is empty now").tr());
+          return Center(child: const Text("Notifications is empty now").tr());
         }
 
         return RefreshIndicator(
@@ -59,12 +55,12 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 key: Key(notifications[index]['_id'].toString()),
                 background: Container(
                   color: Colors.red,
-                  child: Icon(
+                  alignment: Alignment.centerRight,
+                  padding: const EdgeInsets.only(right: 20.0),
+                  child: const Icon(
                     Icons.delete,
                     color: Colors.white,
                   ),
-                  alignment: Alignment.centerRight,
-                  padding: EdgeInsets.only(right: 20.0),
                 ),
                 onDismissed: (direction) async{
                   bool isNotificationDeleted = await UserService.deleteUserNotification(id: notifications[index]['_id']);
@@ -77,14 +73,14 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 child: ListTile(
                   title: Text('${notifications[index]['title']}'),
                   subtitle: Text('${notifications[index]['body']}'),
-                  trailing: Text('${dateFormat.format(DateTime.fromMillisecondsSinceEpoch(notifications[index]['createdAt']))}'),
+                  trailing: Text(dateFormat.format(DateTime.fromMillisecondsSinceEpoch(notifications[index]['createdAt']))),
                 ),
               );
             },
           ),
         );
       }
-      return Text("");
+      return const Text("");
     },
     ),
     );

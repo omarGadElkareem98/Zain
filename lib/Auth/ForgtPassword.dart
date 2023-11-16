@@ -2,7 +2,6 @@
 
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -34,33 +33,33 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               crossAxisAlignment: CrossAxisAlignment.start,
 
               children: [
-                Text('title_forgot',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),).tr(),
-                SizedBox(height: 20,),
-                Text('description').tr(),
-                SizedBox(height: 30,),
+                const Text('title_forgot',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),).tr(),
+                const SizedBox(height: 20,),
+                const Text('description').tr(),
+                const SizedBox(height: 30,),
                 TextFormField(
                   controller: _emailController,
                   decoration: InputDecoration(
                       hintText: 'your_email'.tr(),
 
-                      border: OutlineInputBorder(
+                      border: const OutlineInputBorder(
 
                       ),
 
                       focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColor.AppColors),
+                          borderSide: const BorderSide(color: AppColor.AppColors),
                           borderRadius: BorderRadius.circular(14)
                       )
                   ),
 
 
                 ),
-                SizedBox(height: 15,),
+                const SizedBox(height: 15,),
 
 
 
-                SizedBox(height: 15,),
-                Container(
+                const SizedBox(height: 15,),
+                SizedBox(
                   width: double.infinity,
 
                   child: MaterialButton(
@@ -74,11 +73,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
                       }
                     },
+                    color: AppColor.AppColors,
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
-                      child: Text('send',style:TextStyle(color: Colors.white,fontSize: 20) ,).tr(),
+                      child: const Text('send',style:TextStyle(color: Colors.white,fontSize: 20) ,).tr(),
                     ),
-                    color: AppColor.AppColors,
 
 
                   ),

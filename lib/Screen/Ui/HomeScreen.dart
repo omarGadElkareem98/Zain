@@ -1,36 +1,31 @@
-
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
-
-
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:easy_localization/easy_localization.dart' show BuildContextEasyLocalizationExtension, StringTranslateExtension, TextTranslateExtension, tr;
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
+import 'package:easy_localization/easy_localization.dart'
+    show
+    BuildContextEasyLocalizationExtension,
+    StringTranslateExtension,
+    TextTranslateExtension,
+    tr;
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:translator/translator.dart';
+import 'package:http/http.dart' as http;
 import 'package:zainlak_tech/Screen/Ui/SplachScreen.dart';
 import 'package:zainlak_tech/Services/users.dart';
 
-import '../../Constant/AppColor.dart';
 import '../../Services/category.dart';
-import '../../Services/popularTechnician.dart';
 import '../../Services/technicians.dart';
 import 'DetailsScreen.dart';
 import 'Employee_Profile.dart';
 import 'Notification_Screen.dart';
 import 'ProfileScreen.dart';
-import 'no_network_screen.dart';
-import 'package:http/http.dart' as http;
+
+
 class HomeScreen extends StatefulWidget {
+
 
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -39,85 +34,80 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Future<List> _getAllSliders() async{
-    try{
+  Future<List> _getAllSliders() async {
+    try {
       final Uri uri = Uri.parse('https://adminzaindev.zaindev.com.sa/sliders');
       http.Response response = await http.get(uri);
 
-      if(response.statusCode == 200){
+      if (response.statusCode == 200) {
         return jsonDecode(response.body);
-      }else{
+      } else {
         return [];
       }
-    }catch(error){
+    } catch (error) {
       return [];
     }
   }
 
   final List<String> city = [
     "  Abhā",
-  "Abqaiq",
-  "Al-Baḥah",
-  "Al-Dammām",
-  "Al-Hufūf",
-  "Al-Jawf",
-  "Al-Kharj (oasis)",
-  "Al-Khubar",
- " Al-Qaṭīf",
-  "Al-Ṭaʾif",
-  "ʿArʿar",
-  "Buraydah",
-  "Dhahran",
-  "Ḥāʾil",
-  "Jiddah",
-  "Jīzān",
-  "Khamīs Mushayt",
-  "King Khalīd Military City",
- " Mecca",
-  "Medina",
-  "Najrān",
-  "Ras Tanura",
-  "Riyadh",
- " Sakākā",
-  "Tabūk",
-  "Yanbuʿ",
+    "Abqaiq",
+    "Al-Baḥah",
+    "Al-Dammām",
+    "Al-Hufūf",
+    "Al-Jawf",
+    "Al-Kharj (oasis)",
+    "Al-Khubar",
+    " Al-Qaṭīf",
+    "Al-Ṭaʾif",
+    "ʿArʿar",
+    "Buraydah",
+    "Dhahran",
+    "Ḥāʾil",
+    "Jiddah",
+    "Jīzān",
+    "Khamīs Mushayt",
+    "King Khalīd Military City",
+    " Mecca",
+    "Medina",
+    "Najrān",
+    "Ras Tanura",
+    "Riyadh",
+    " Sakākā",
+    "Tabūk",
+    "Yanbuʿ",
   ];
 
-  String ? selectedValue;
+  String? selectedValue;
 
-
-  void validateToken() async{
+  void validateToken() async {
     bool isValidToken = await UserService.validateToken();
-    if(!isValidToken){
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Your Session Has Ended, Login Again'),duration: Duration(seconds: 4),)
-      );
+    if (!isValidToken) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Your Session Has Ended, Login Again'),
+        duration: Duration(seconds: 4),
+      ));
 
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => SplachScreen(token: null))
-      );
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => const SplachScreen(token: null)));
     }
   }
 
-      @override
+  @override
   void initState() {
     super.initState();
     validateToken();
   }
 
-
-
-
-      void NavigateToDetailsScreen (String id,String name){
-        Navigator.push(context, MaterialPageRoute(builder: (context,){
-          return DetailsScreen(id:id,name:name);
-        }));
+  void NavigateToDetailsScreen(String id, String name) {
+    Navigator.push(context, MaterialPageRoute(builder: (context,) {
+      return DetailsScreen(id: id, name: name);
+    }));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,36 +116,38 @@ class _HomeScreenState extends State<HomeScreen> {
               textDirection: TextDirection.ltr,
               child: Container(
                 width: double.infinity,
-
                 color: Colors.white,
                 child: GestureDetector(
-                  onTap: (){
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => ProfileScreen())
-                    );
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const ProfileScreen()));
                   },
                   child: Container(
-                    margin: EdgeInsets.only(top: 20),
-                    padding: EdgeInsets.all(8.0),
+                    margin: const EdgeInsets.only(top: 20),
+                    padding: const EdgeInsets.all(8.0),
                     child: Row(
-
                       children: [
                         FutureBuilder(
                             future: UserService.getUser(),
-                            builder: (context,AsyncSnapshot snapshot){
-                              if(snapshot.connectionState == ConnectionState.waiting){
-                                return Center(
+                            builder: (context, AsyncSnapshot snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const Center(
                                   child: CircularProgressIndicator(),
                                 );
                               }
 
-                              if(snapshot.hasError){
-                                return Center(
-                                  child: Icon(Icons.error_outline,size: 30,color: Colors.black,),
+                              if (snapshot.hasError) {
+                                return const Center(
+                                  child: Icon(
+                                    Icons.error_outline,
+                                    size: 30,
+                                    color: Colors.black,
+                                  ),
                                 );
                               }
 
-                              if(snapshot.data != null){
+                              if (snapshot.data != null) {
                                 Map user = snapshot.data;
                                 return Row(
                                   children: [
@@ -163,87 +155,100 @@ class _HomeScreenState extends State<HomeScreen> {
                                       width: 40,
                                       height: 40,
                                       decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: CachedNetworkImageProvider(user['image']),
-                                          fit: BoxFit.cover
-                                        ),
-                                        borderRadius: BorderRadius.circular(40)
-                                      ),
+                                          image: DecorationImage(
+                                              image: CachedNetworkImageProvider(
+                                                  user['image']),
+                                              fit: BoxFit.cover),
+                                          borderRadius:
+                                          BorderRadius.circular(40)),
                                     ),
-                                    SizedBox(width: 8,),
-                                    Text("${user['name']}",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
+                                    const SizedBox(
+                                      width: 8,
+                                    ),
+                                    Text(
+                                      "${user['name']}",
+                                      style: const TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ],
                                 );
                               }
-                              return Text('');
-                            }
+                              return const Text('');
+                            }),
+                        const SizedBox(
+                          width: 8.0,
                         ),
-                        SizedBox(width: 8.0,),
                         Expanded(
                           flex: 1,
                           child: SizedBox(
                             height: 40,
                             child: TextField(
-
-
                               keyboardType: TextInputType.text,
                               readOnly: true,
-                              onTap: () async{
-                                List technicians = await TechnicianService.getAllTechnicians();
+                              onTap: () async {
+                                List technicians =
+                                await TechnicianService.getAllTechnicians();
 
                                 await showSearch(
                                   context: context,
-                                  delegate: TechnicianSearchDelegate(technicians: technicians),
+                                  delegate: TechnicianSearchDelegate(
+                                      technicians: technicians),
                                 );
                               },
-                              style: TextStyle(color: Colors.black),
+                              style: const TextStyle(color: Colors.black),
                               decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
+                                  border: const OutlineInputBorder(),
                                   fillColor: Colors.black,
                                   prefixText: 'Search'.tr(),
-
-                                  suffixIcon: Icon(Icons.search,color: Colors.black,),
-                                  hintStyle: TextStyle(color: Colors.black),
-                                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black),
-
+                                  suffixIcon: const Icon(
+                                    Icons.search,
+                                    color: Colors.black,
                                   ),
-                                  focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black))
-                              ),
-
+                                  hintStyle:
+                                  const TextStyle(color: Colors.black),
+                                  enabledBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.black),
+                                  ),
+                                  focusedBorder: const OutlineInputBorder(
+                                      borderSide:
+                                      BorderSide(color: Colors.black))),
                             ),
                           ),
                         ),
-                        SizedBox(width: 8.0,),
+                        const SizedBox(
+                          width: 8.0,
+                        ),
                         GestureDetector(
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context){
-                              return NotificationsScreen();
-                            }));
-                          },
-                            child: Icon(Icons.notifications_outlined,color: Colors.black,)),
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                    return const NotificationsScreen();
+                                  }));
+                            },
+                            child: const Icon(
+                              Icons.notifications_outlined,
+                              color: Colors.black,
+                            )),
                       ],
                     ),
                   ),
                 ),
               ),
             ),
-
             Container(
-
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30)
-              ),
-
+              decoration:
+              BoxDecoration(borderRadius: BorderRadius.circular(30)),
               child: Container(
                 width: double.infinity,
                 alignment: Alignment.center,
                 child: Container(
                   alignment: Alignment.center,
                   width: double.infinity,
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.0),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         offset: Offset(-3, 3),
                         blurRadius: 0,
@@ -253,28 +258,29 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   child: FutureBuilder<List>(
                     future: _getAllSliders(),
-                    builder: (BuildContext context,AsyncSnapshot<List> snapshot){
-                      if(snapshot.connectionState == ConnectionState.waiting){
-                        return Center(
+                    builder:
+                        (BuildContext context, AsyncSnapshot<List> snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(
                           child: CircularProgressIndicator(),
                         );
                       }
 
-                      if(snapshot.hasError){
-                        return Center(
+                      if (snapshot.hasError) {
+                        return const Center(
                           child: Text('Something Went Wrong'),
                         );
                       }
 
-                      if(snapshot.data != null){
-                        if(snapshot.data!.isEmpty){
-                          return Center(
+                      if (snapshot.data != null) {
+                        if (snapshot.data!.isEmpty) {
+                          return const Center(
                             child: Text('No Items Yet'),
                           );
                         }
 
                         return CarouselSlider(
-                          items: snapshot.data!.map((e){
+                          items: snapshot.data!.map((e) {
                             return Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12.0),
@@ -305,251 +311,267 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                 ),
-              )
-              ,
+              ),
             ),
-
-            SizedBox(height: 12.0,),
-
+            const SizedBox(
+              height: 12.0,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: AutoSizeText("Welcome To Zain".tr(),style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold
-              ),maxLines: 1,),
+              child: AutoSizeText(
+                "Welcome To Zain".tr(),
+                style:
+                const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                maxLines: 1,
+              ),
             ),
-
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Text("How Can We Help You Today?",style: TextStyle(
-                fontSize: 18
-              ),).tr(),
+              child: const Text(
+                "How Can We Help You Today?",
+                style: TextStyle(fontSize: 18),
+              ).tr(),
             ),
-
-            SizedBox(height: 12,),
-
+            const SizedBox(
+              height: 12,
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 18),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-
-              SizedBox(width: 12,),
-              Center(
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton2<String>(
-                    isExpanded: true,
-                    hint: const Row(
-                      children: [
-                        Icon(
-                          Icons.location_on,
-                          size: 16,
-                          color: Colors.yellow,
-                        ),
-                        SizedBox(
-                          width: 4,
-                        ),
-                        Expanded(
-                          child: Center(
-                            child: Text(
-                              'مكانك',
-                              style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.yellow,
-                              ),
-                              overflow: TextOverflow.ellipsis,
+                  const SizedBox(
+                    width: 12,
+                  ),
+                  Center(
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton2<String>(
+                        isExpanded: true,
+                        hint: const Row(
+                          children: [
+                            Icon(
+                              Icons.location_on,
+                              size: 16,
+                              color: Colors.yellow,
                             ),
+                            SizedBox(
+                              width: 4,
+                            ),
+                            Expanded(
+                              child: Center(
+                                child: Text(
+                                  'مكانك',
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.yellow,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        items: city
+                            .map((String item) =>
+                            DropdownMenuItem<String>(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ))
+                            .toList(),
+                        value: selectedValue,
+                        onChanged: (String? value) {
+                          setState(() {
+                            selectedValue = value;
+                          });
+                        },
+                        buttonStyleData: ButtonStyleData(
+                          height: 50,
+                          width: 300,
+                          padding: const EdgeInsets.only(left: 14, right: 14),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14),
+                            border: Border.all(
+                              color: Colors.black26,
+                            ),
+                            color: Colors.black,
+                          ),
+                          elevation: 2,
+                        ),
+                        iconStyleData: const IconStyleData(
+                          icon: Icon(
+                            Icons.arrow_forward_ios_outlined,
+                          ),
+                          iconSize: 14,
+                          iconEnabledColor: Colors.yellow,
+                          iconDisabledColor: Colors.grey,
+                        ),
+                        dropdownStyleData: DropdownStyleData(
+                          maxHeight: 600,
+                          width: 300,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14),
+                            color: Colors.black,
+                          ),
+                          offset: const Offset(-20, 0),
+                          scrollbarTheme: ScrollbarThemeData(
+                            radius: const Radius.circular(40),
+                            thickness: MaterialStateProperty.all<double>(6),
+                            thumbVisibility:
+                            MaterialStateProperty.all<bool>(true),
                           ),
                         ),
-                      ],
-                    ),
-                    items: city
-                        .map((String item) => DropdownMenuItem<String>(
-                      value: item,
-                      child: Text(
-                        item,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                        menuItemStyleData: const MenuItemStyleData(
+                          height: 40,
+                          padding: EdgeInsets.only(left: 14, right: 14),
                         ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ))
-                        .toList(),
-                    value: selectedValue,
-                    onChanged: (String? value) {
-                      setState(() {
-                        selectedValue = value;
-                      });
-                    },
-                    buttonStyleData: ButtonStyleData(
-                      height: 50,
-                      width: 300,
-                      padding: const EdgeInsets.only(left: 14, right: 14),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(14),
-                        border: Border.all(
-                          color: Colors.black26,
-                        ),
-                        color: Colors.black,
-                      ),
-                      elevation: 2,
-                    ),
-                    iconStyleData: const IconStyleData(
-                      icon: Icon(
-                        Icons.arrow_forward_ios_outlined,
-                      ),
-                      iconSize: 14,
-                      iconEnabledColor: Colors.yellow,
-                      iconDisabledColor: Colors.grey,
-                    ),
-                    dropdownStyleData: DropdownStyleData(
-                      maxHeight: 600,
-                      width: 300,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(14),
-                        color: Colors.black,
-                      ),
-                      offset: const Offset(-20, 0),
-                      scrollbarTheme: ScrollbarThemeData(
-                        radius: const Radius.circular(40),
-                        thickness: MaterialStateProperty.all<double>(6),
-                        thumbVisibility: MaterialStateProperty.all<bool>(true),
                       ),
                     ),
-                    menuItemStyleData: const MenuItemStyleData(
-                      height: 40,
-                      padding: EdgeInsets.only(left: 14, right: 14),
-                    ),
-                  ),
-                ),
-              )
+                  )
                 ],
               ),
             ),
-
-
-
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 16.0),
+              margin: const EdgeInsets.symmetric(horizontal: 16.0),
               child: FutureBuilder(
                 future: CategoryService.getAllCategories(),
-                builder: (context,AsyncSnapshot snapshot){
-                  if(snapshot.connectionState == ConnectionState.waiting){
-                    return Center(
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   }
 
-                  if(snapshot.hasError){
-                    return Center(
+                  if (snapshot.hasError) {
+                    return const Center(
                       child: Text("Something Went Wrong"),
                     );
                   }
 
-                  if(snapshot.data != null){
-                    if(snapshot.data.isEmpty){
-                      return Center(
+                  if (snapshot.data != null) {
+                    if (snapshot.data.isEmpty) {
+                      return const Center(
                         child: Text("No Categories Yet"),
                       );
                     }
 
                     return ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: snapshot.data.length,
-                        itemBuilder: (context , index){
+                        itemBuilder: (context, index) {
                           return GestureDetector(
-                            onTap: (){
-                              NavigateToDetailsScreen(snapshot.data[index]['_id'],snapshot.data[index]['name']);
+                            onTap: () {
+                              NavigateToDetailsScreen(
+                                  snapshot.data[index]['_id'],
+                                  snapshot.data[index]['name']);
                             },
                             child: Container(
                               width: double.infinity,
                               height: 120,
-                              margin: EdgeInsets.only(top: 12.0),
+                              margin: const EdgeInsets.only(top: 12.0),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30.0),
+                                  borderRadius: BorderRadius.circular(30.0),
                                   image: DecorationImage(
-                                      image: CachedNetworkImageProvider(snapshot.data[index]['image']),
-                                  fit: BoxFit.cover
-                                  ),
-                                  boxShadow: [
-                                  BoxShadow(
-                                    offset: Offset(-3,3),
-                                    blurRadius: 2,
-                                    color: Colors.transparent
-                                  ),
-                                ]
-                              ),
+                                      image: CachedNetworkImageProvider(
+                                          snapshot.data[index]['image']),
+                                      fit: BoxFit.cover),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                        offset: Offset(-3, 3),
+                                        blurRadius: 2,
+                                        color: Colors.transparent),
+                                  ]),
                               child: Container(
-                                width: double.infinity,
-                                height: 30,
-                                alignment: Alignment.center,
-
-                                padding: EdgeInsets.all(4.0),
+                                  width: double.infinity,
+                                  height: 30,
+                                  alignment: Alignment.center,
+                                  padding: const EdgeInsets.all(4.0),
                                   decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0),
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(8.0),
-                                      bottomRight: Radius.circular(8.0),
-                                    )
-                                  ),
-                                  child: Text("${context.locale.languageCode == 'en' ? snapshot.data[index]['name'] : snapshot.data[index]['nameAr']}" ,
-                                    style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 16),).tr()),
+                                      color: Colors.black.withOpacity(0),
+                                      borderRadius: const BorderRadius.only(
+                                        bottomLeft: Radius.circular(8.0),
+                                        bottomRight: Radius.circular(8.0),
+                                      )),
+                                  child: Text(
+                                    "${context.locale.languageCode == 'en'
+                                        ? snapshot.data[index]['name']
+                                        : snapshot.data[index]['nameAr']}",
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                        fontSize: 16),
+                                  ).tr()),
                             ),
                           );
                         });
                   }
 
-                  return Text('nothing yet');
+                  return const Text('nothing yet');
                 },
               ),
             ),
-
-            SizedBox(height: 12,),
-
+            const SizedBox(
+              height: 12,
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 width: double.infinity,
                 height: 200,
                 decoration: BoxDecoration(
-                  color: Colors.orange,
-                  borderRadius: BorderRadius.circular(33)
-                ),
+                    color: Colors.orange,
+                    borderRadius: BorderRadius.circular(33)),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 30),
                   child: Column(
                     children: [
-                      Text("هل انت مزود خدمه",style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 23
-                      ),),
-                      SizedBox(height: 5,),
-                      Text("سجل معنا اليوم لتطوير عملك وزياده دخلك",style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black45
-                      ),),
-                      SizedBox(height: 5,),
+                      const Text(
+                        "هل انت مزود خدمه",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 23),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      const Text(
+                        "سجل معنا اليوم لتطوير عملك وزياده دخلك",
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black45),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       Container(
                         width: 160,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(22)
-                        ),
+                            borderRadius: BorderRadius.circular(22)),
                         child: MaterialButton(
-                          onPressed: (){} ,
+                          onPressed: () {},
                           color: Colors.white54,
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Flexible(child: Icon(Icons.double_arrow)),
-                              SizedBox(width: 10,),
-                              Text("تسجيل كمزود خدمه",style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),)
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                "تسجيل كمزود خدمه",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
                             ],
                           ),
                         ),
@@ -560,14 +582,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             )
           ],
-
         ),
       ),
     );
   }
 }
-
-
 
 class TechnicianSearchDelegate extends SearchDelegate {
   final List technicians;
@@ -618,14 +637,14 @@ class TechnicianSearchDelegate extends SearchDelegate {
             );
           },
           child: Container(
-            margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
-            padding: EdgeInsets.all(8.0),
+            margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+            padding: const EdgeInsets.all(8.0),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(8.0),
               boxShadow: [
                 BoxShadow(
-                  offset: Offset(0, 2),
+                  offset: const Offset(0, 2),
                   blurRadius: 4,
                   color: Colors.black.withOpacity(0.1),
                 ),
@@ -639,14 +658,15 @@ class TechnicianSearchDelegate extends SearchDelegate {
                   height: 60,
                   width: 60,
                   fit: BoxFit.cover,
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  placeholder: (context, url) =>
+                  const CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
-                SizedBox(width: 8.0),
+                const SizedBox(width: 8.0),
                 Expanded(
                   child: Text(
                     technician['name'],
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -671,6 +691,3 @@ class TechnicianSearchDelegate extends SearchDelegate {
     return Container();
   }
 }
-
-
-

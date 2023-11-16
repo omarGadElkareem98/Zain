@@ -5,7 +5,7 @@ import 'package:zainlak_tech/Screen/Ui/MainScreen.dart';
 
 class OnboardingScreen extends StatelessWidget {
   final String? token;
-  OnboardingScreen({required this.token});
+  const OnboardingScreen({super.key, required this.token});
 
   @override
   Widget build(BuildContext context) {
@@ -56,17 +56,17 @@ class OnboardingScreen extends StatelessWidget {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => token == null ? LoginScreen() : MainScreen(),
+              builder: (context) => token == null ? const LoginScreen() : const MainScreen(),
             ),
           );
         },
-        done: Text(
+        done: const Text(
           "Get Started",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         showSkipButton: true,
-        skip: Text("Skip",),
-        next: Icon(Icons.arrow_forward),
+        skip: const Text("Skip",),
+        next: const Icon(Icons.arrow_forward),
         dotsDecorator: DotsDecorator(
           activeColor: Theme.of(context).primaryColor,
         ),
@@ -82,7 +82,7 @@ class OnboardingScreen extends StatelessWidget {
   }
 
   PageDecoration _getPageDecoration() {
-    return PageDecoration(
+    return const PageDecoration(
       titleTextStyle: TextStyle(
         fontSize: 28.0,
         fontWeight: FontWeight.bold,

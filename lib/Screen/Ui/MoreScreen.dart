@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zainlak_tech/Constant/AppColor.dart';
 import 'package:zainlak_tech/Screen/Ui/About.dart';
@@ -27,8 +26,8 @@ class _MoreScreenState extends State<MoreScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 32),
-            Text(
+            const SizedBox(height: 32),
+            const Text(
               'More Services',
               style: TextStyle(
                 fontSize: 32,
@@ -36,7 +35,7 @@ class _MoreScreenState extends State<MoreScreen> {
                 color: AppColor.AppColors,
               ),
             ).tr(),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             Expanded(
               child: ListView(
                 children: [
@@ -45,7 +44,7 @@ class _MoreScreenState extends State<MoreScreen> {
                     text: 'Conditions & Terms'.tr(),
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return Terms();
+                        return const Terms();
                       }));
                     },
                   ),
@@ -54,7 +53,7 @@ class _MoreScreenState extends State<MoreScreen> {
                     text: 'Change Language'.tr(),
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return Languages();
+                        return const Languages();
                       }));
                     },
                   ),
@@ -63,7 +62,7 @@ class _MoreScreenState extends State<MoreScreen> {
                     text: 'About Zainlak'.tr(),
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return About();
+                        return const About();
                       }));
                     },
                   ),
@@ -72,7 +71,7 @@ class _MoreScreenState extends State<MoreScreen> {
                     text: 'Products'.tr(),
                     onTap: () async {
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => ProductsScreen()),
+                        MaterialPageRoute(builder: (context) => const ProductsScreen()),
                       );
                     },
                   ),
@@ -83,7 +82,7 @@ class _MoreScreenState extends State<MoreScreen> {
                       SharedPreferences shared = await SharedPreferences.getInstance();
                       await shared.remove('token');
                       Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => SplachScreen(token: null)),
+                        MaterialPageRoute(builder: (context) => const SplachScreen(token: null)),
                       );
                     },
                   ),
@@ -98,13 +97,13 @@ class _MoreScreenState extends State<MoreScreen> {
 
   Widget buildMenuItem({required IconData iconData, required String text, required VoidCallback onTap}) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 8),
+      margin: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            offset: Offset(0, 2),
+            offset: const Offset(0, 2),
             blurRadius: 6,
             color: Colors.black.withOpacity(0.1),
           ),
@@ -118,13 +117,13 @@ class _MoreScreenState extends State<MoreScreen> {
         ),
         title: Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
             color: AppColor.AppColors,
           ),
         ),
-        trailing: Icon(
+        trailing: const Icon(
           Icons.arrow_forward_ios,
           size: 20,
           color: AppColor.AppColors,

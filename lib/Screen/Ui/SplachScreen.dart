@@ -1,10 +1,6 @@
 import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:zainlak_tech/Auth/LoginScreen.dart';
-import 'package:zainlak_tech/Constant/AppColor.dart';
 import 'package:zainlak_tech/Screen/Ui/MainScreen.dart';
 import 'package:zainlak_tech/Screen/Ui/on_boarding_screen.dart';
 
@@ -25,7 +21,7 @@ class _SplachScreenState extends State<SplachScreen>
   @override
   void initState() {
     _animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 2));
+        AnimationController(vsync: this, duration: const Duration(seconds: 2));
     _scaleAnimation = CurvedAnimation(
       parent: _animationController,
       curve: Curves.easeInOut,
@@ -36,10 +32,10 @@ class _SplachScreenState extends State<SplachScreen>
     ));
     _animationController.forward();
 
-    Timer(Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
         return widget.token != null
-            ? MainScreen()
+            ? const MainScreen()
             : OnboardingScreen(token: widget.token);
       }));
     });
@@ -52,11 +48,12 @@ class _SplachScreenState extends State<SplachScreen>
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Container(
-        color: Color(0xFF123456),
+        color: const Color(0xFF123456),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -65,17 +62,17 @@ class _SplachScreenState extends State<SplachScreen>
                 opacity: _opacityAnimation,
                 child: ScaleTransition(
                   scale: _scaleAnimation,
-                  child: Icon(
+                  child: const Icon(
                     Icons.home,
                     color: Colors.white,
                     size: 120,
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               FadeTransition(
                 opacity: _opacityAnimation,
-                child: Text(
+                child: const Text(
                   "Welcome To Zainlk",
                   style: TextStyle(
                     color: Colors.white,
@@ -85,10 +82,10 @@ class _SplachScreenState extends State<SplachScreen>
                   ),
                 ).tr(),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               FadeTransition(
                 opacity: _opacityAnimation,
-                child: Text(
+                child: const Text(
                   "For Home Services",
                   style: TextStyle(
                     color: Colors.white,
@@ -97,8 +94,8 @@ class _SplachScreenState extends State<SplachScreen>
                   ),
                 ).tr(),
               ),
-              SizedBox(height: 32),
-              CircularProgressIndicator(
+              const SizedBox(height: 32),
+              const CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
               ),
             ],

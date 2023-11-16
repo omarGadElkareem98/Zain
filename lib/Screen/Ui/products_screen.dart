@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:zainlak_tech/Constant/AppColor.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../Services/popularTechnician.dart';
@@ -22,7 +21,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
           onPressed: (){
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back_ios,size: 30, color: Colors.white,),
+          icon: const Icon(Icons.arrow_back_ios,size: 30, color: Colors.white,),
         ),
         backgroundColor: Colors.black,
       ),
@@ -30,14 +29,14 @@ class _ProductsScreenState extends State<ProductsScreen> {
         future: PopularTechnicianService.getAllPopularTechnicians(),
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
 
           if (snapshot.hasError) {
             return Center(
-              child: Text(
+              child: const Text(
                 'Something Went Wrong',
                 style: TextStyle(fontSize: 20),
               ).tr(),
@@ -49,25 +48,25 @@ class _ProductsScreenState extends State<ProductsScreen> {
               return Center(
                 child: Text(
                   'No Products Yet'.tr(),
-                  style: TextStyle(fontSize: 24),
+                  style: const TextStyle(fontSize: 24),
                 ),
               );
             }
 
             return Container(
-              margin: EdgeInsets.all(12.0),
+              margin: const EdgeInsets.all(12.0),
               child: ListView.builder(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 itemCount: snapshot.data.length,
                 itemBuilder: (context, index) {
                   return Container(
                     width: double.infinity,
                     height: 300,
-                    margin: EdgeInsets.all(8.0),
+                    margin: const EdgeInsets.all(8.0),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12.0),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           color: Colors.black12,
                           blurRadius: 2,
@@ -88,7 +87,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                               height: 80,
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                   topRight: Radius.circular(12.0),
                                   topLeft: Radius.circular(12.0),
                                 ),
@@ -101,25 +100,25 @@ class _ProductsScreenState extends State<ProductsScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 8.0),
+                          const SizedBox(height: 8.0),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 8.0),
                             child: Text(
                               snapshot.data[index]['name'],
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
                               ),
                             ),
                           ),
-                          SizedBox(height: 8,),
+                          const SizedBox(height: 8,),
                           Expanded(
                             child: SingleChildScrollView(
                               child: Container(
                                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                 child: Text(
                                   snapshot.data[index]['description'],
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 14,
                                     color: Colors.grey,
                                   ),
@@ -129,13 +128,13 @@ class _ProductsScreenState extends State<ProductsScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 8.0),
+                          const SizedBox(height: 8.0),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 '${snapshot.data[index]['price']} SAR',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -149,7 +148,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                     }
                                   }
                                 },
-                                child: Text(
+                                child: const Text(
                                   'Show More',
                                   style: TextStyle(fontSize: 14),
                                 ).tr(),
@@ -166,7 +165,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
             );
           }
 
-          return Text('');
+          return const Text('');
         },
       ),
     );

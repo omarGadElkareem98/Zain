@@ -1,11 +1,9 @@
-import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:zainlak_tech/Screen/Ui/Employee_Profile.dart';
 import 'package:zainlak_tech/Services/users.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class FavouriteScreen extends StatefulWidget {
   const FavouriteScreen({Key? key}) : super(key: key);
@@ -17,6 +15,7 @@ class FavouriteScreen extends StatefulWidget {
 class _FavouriteScreenState extends State<FavouriteScreen> {
 
 
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -28,12 +27,12 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(
+                  child: const Text(
                     "Favourite",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
                   ).tr(),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 SizedBox(
                   height: 700,
                   child: FutureBuilder<
@@ -44,7 +43,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                 ({List<dynamic> techs, String? errorMessage})>
                             snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(
+                        return const Center(
                           child: CircularProgressIndicator(),
                         );
                       }
@@ -54,7 +53,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                           return Center(
                             child: Text(
                               snapshot.data!.errorMessage.toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
         fontSize: 20,
         color: Colors.black,
         fontWeight: FontWeight.bold
@@ -65,7 +64,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
 
                         return snapshot.data!.techs.isEmpty
                             ? Center(
-                                child: Text(
+                                child: const Text(
                                   'No Favourites Yet',
                                   style: TextStyle(fontSize: 24),
                                 ).tr(),
@@ -96,7 +95,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                               color:
                                                   Colors.black.withOpacity(0.1),
                                               blurRadius: 6,
-                                              offset: Offset(0, 3),
+                                              offset: const Offset(0, 3),
                                             ),
                                           ],
                                         ),
@@ -109,16 +108,16 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                                 imageUrl: snapshot.data!
                                                     .techs[index]['image'],
                                                 placeholder: (context, url) =>
-                                                    CircularProgressIndicator(),
+                                                    const CircularProgressIndicator(),
                                                 errorWidget:
                                                     (context, url, error) =>
-                                                        Icon(Icons.error),
+                                                        const Icon(Icons.error),
                                                 width: 100,
                                                 height: 100,
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
-                                            SizedBox(width: 10),
+                                            const SizedBox(width: 10),
                                             Expanded(
                                               child: Padding(
                                                 padding:
@@ -130,30 +129,30 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                                   children: [
                                                     Text(
                                                       "${snapshot.data!.techs[index]['name']}",
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                         fontSize: 22,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                       ),
                                                     ),
-                                                    SizedBox(height: 4),
+                                                    const SizedBox(height: 4),
                                                     Text(
                                                       "${context.locale.languageCode == 'en' ? snapshot.data!.techs[index]['category']['name'] : snapshot.data!.techs[index]['category']['nameAr']}",
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                         fontSize: 18,
                                                         color: Colors.grey,
                                                       ),
                                                     ),
-                                                    SizedBox(height: 8),
+                                                    const SizedBox(height: 8),
                                                     Row(
                                                       children: [
-                                                        Icon(
+                                                        const Icon(
                                                           Icons.star,
                                                           color: Colors.orange,
                                                           size: 20,
                                                         ),
-                                                        SizedBox(width: 4),
-                                                        Text(
+                                                        const SizedBox(width: 4),
+                                                        const Text(
                                                           "4.5",
                                                           style: TextStyle(
                                                             fontSize: 16,
@@ -161,8 +160,8 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                                                 FontWeight.bold,
                                                           ),
                                                         ),
-                                                        SizedBox(width: 4),
-                                                        Text(
+                                                        const SizedBox(width: 4),
+                                                        const Text(
                                                           "(50 Reviews)",
                                                           style: TextStyle(
                                                             fontSize: 14,
@@ -184,7 +183,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                               );
                       }
 
-                      return Text('');
+                      return const Text('');
                     },
                   ),
                 ),
