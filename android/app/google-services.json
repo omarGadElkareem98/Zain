@@ -1,36 +1,26 @@
 {
   "project_info": {
-    "project_number": "989301557409",
-    "project_id": "zainfinal-b9de0",
-    "storage_bucket": "zainfinal-b9de0.appspot.com"
+    "project_number": "364302055585",
+    "project_id": "zainapp-21651",
+    "storage_bucket": "zainapp-21651.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:989301557409:android:356cbabb92b9586e0288e0",
+        "mobilesdk_app_id": "1:364302055585:android:9e3b40c4fd673cedfe58e0",
         "android_client_info": {
-          "package_name": "com.example.zainlak_tech"
+          "package_name": "com.zain.zainlak_tech"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "989301557409-68p5j36u5g6032ko7lvbjoj9fi3ospdn.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCyXkLK2oMf4k9M_JHf28gjye0ZjPFVzTs"
+          "current_key": "AIzaSyC0saF0zsH5Vfc9Mfd9CmC9BvFnZKk2G2k"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "989301557409-68p5j36u5g6032ko7lvbjoj9fi3ospdn.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }
